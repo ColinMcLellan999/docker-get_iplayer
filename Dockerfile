@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER Jonathan Harris <jonathan@marginal.org.uk>
 ENV GETIPLAYER_OUTPUT=/output GETIPLAYER_PROFILE=/output/.get_iplayer PUID=1000 PGID=100 PORT=1935 BASEURL=
 EXPOSE $PORT
 VOLUME "$GETIPLAYER_OUTPUT"
@@ -20,7 +19,17 @@ RUN wget -qO - "https://api.github.com/repos/get-iplayer/get_iplayer/releases/la
     rm -rf get-iplayer* && \
     rm /tmp/latest.json
 
-COPY files/ /
+RUN apk --update --no-cache add ruby python3 py3-pip
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD /start
+WORKDIR /
+
+# COPY requirements.txt requirements.txt
+
+COPY files/ /
+RUN pip3 install -r requirements.txt
+
+
+# ENTRYPOINT ["/sbin/tini", "--"]
+# CMD /start
+# CMD ruby
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
