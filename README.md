@@ -1,3 +1,26 @@
+docker build --tag python-docker .
+docker run -t  -p 80:5000 -v "c:\tmp":/output --name alldock --mount source=radio_data,target=/radio_data alldock
+gcloud run deploy --port=5000
+docker run -t  -p 80:5000 -v "c:\tmp":/output alldock
+
+apt-get update
+apt-get install software-properties-common
+add-apt-repository ppa:m-grant-prg/utils
+apt-get update
+apt install get-iplayer
+
+
+apt install get-iplayer -y
+
+
+
+apk update
+apk add ruby
+get_iplayer --force --output "/tmp/"    --file-prefix="<firstbcastdate>~<nameshort>~<episode>~<pid>" --type=radio --radio-quality="std,med" --pid=m001614b
+
+
+
+
 # get_iplayer PVR Docker image
 
 This is a smallish (100MB) Docker image that hosts the [get_iplayer](https://github.com/get-iplayer/get_iplayer/wiki) PVR. It automatically keeps itself up-to-date with the latest version of get_iplayer.
