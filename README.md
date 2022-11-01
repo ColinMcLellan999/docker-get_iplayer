@@ -1,10 +1,12 @@
 # Radio to get bbc shows in a Docker image
 
+```
 docker build --tag python-docker .
 docker run -t  -p 80:5000 -v "c:\tmp":/output --name alldock --mount source=radio_data,target=/radio_data alldock
 gcloud run deploy --port=5000
 docker run -t  -p 80:5000 -v "c:\tmp":/output alldock
 docker run -t  -p 80:5000  alldock
+```
 
 docker push colin999/alldock
 
